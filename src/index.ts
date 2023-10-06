@@ -1,11 +1,95 @@
-/**
- * This file is just a silly example to show everything working in the browser.
- * When you're ready to start on your site, clear the file. Happy hacking!
- **/
+// app.ts
+let score = 0;
+let balls = 0;
+let overs = 0;
+let remainingOvers = 0;
+let ballByBall = [];
 
-import confetti from 'canvas-confetti';
+// Function to update overs and balls based on user input
+function updateOversAndBalls() {
+  const oversInput = document.getElementById('overs-input') as HTMLInputElement;
+  if (oversInput) {
+    overs = parseFloat(oversInput.value);
+    balls = 0;
+    updateOversDisplay();
+  }
+}
 
-confetti.create(document.getElementById('canvas') as HTMLCanvasElement, {
-  resize: true,
-  useWorker: true,
-})({ particleCount: 200, spread: 200 });
+function increaseScoreByRuns(runs: number) {
+  score += runs;
+  ballByBall.push(runs);
+  updateScoreDisplay();
+  recordBall();
+}
+
+function addExtras(extra: string) {
+  score++;
+  updateScoreDisplay();
+}
+
+function recordBall() {
+  balls++;
+  const totalBallsInAnOver = 6;
+  const totalBallsPlayed = overs * totalBallsInAnOver - balls;
+  const _remainingOvers = Math.floor(totalBallsPlayed / totalBallsInAnOver);
+  const remainingBalls = totalBallsPlayed % totalBallsInAnOver;
+
+  remainingOvers = parseFloat(`${_remainingOvers}.${remainingBalls}`);
+  updateOversDisplay();
+  // if (balls === 6) {
+  //   balls = 0;
+  //   overs--;
+  //   updateOversDisplay();
+  // }
+}
+
+function updateScoreDisplay() {
+  const scoreElement = document.getElementById('score');
+  if (scoreElement) {
+    scoreElement.textContent = score.toString();
+  }
+}
+
+function updateOversDisplay() {
+  const oversElement = document.getElementById('overs');
+  const remainingOversElement = document.getElementById('remainingOvers');
+  if (oversElement) {
+    oversElement.textContent = `${overs}`;
+  }
+  if (remainingOversElement) {
+    remainingOversElement.textContent = `${remainingOvers}`;
+  }
+}
+
+document
+  .getElementById('increase-by-1')
+  ?.addEventListener('click', () => increaseScoreByRuns(1));
+document
+  .getElementById('increase-by-2')
+  ?.addEventListener('click', () => increaseScoreByRuns(2));
+document
+  .getElementById('increase-by-3')
+  ?.addEventListener('click', () => increaseScoreByRuns(3));
+document
+  .getElementById('increase-by-4')
+  ?.addEventListener('click', () => increaseScoreByRuns(4));
+document
+  .getElementById('increase-by-5')
+  ?.addEventListener('click', () => increaseScoreByRuns(5));
+document
+  .getElementById('increase-by-6')
+  ?.addEventListener('click', () => increaseScoreByRuns(6));
+document
+  .getElementById('wideBall')
+  ?.addEventListener('click', () => addExtras('wide'));
+document
+  .getElementById('noBall')
+  ?.addEventListener('click', () => addExtras('noBall'));
+
+document
+  .getElementById('update-overs-button')
+  ?.addEventListener('click', updateOversAndBalls);
+
+// Initial display
+updateScoreDisplay();
+updateOversDisplay();
