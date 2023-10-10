@@ -43,7 +43,7 @@ text-align: center;
     text-align: center;
 }
 .oversInput {
-  width: 100px;
+  width: 30px;
   height: 2rem;
 }
 .enterOversWrapper {
@@ -66,4 +66,15 @@ text-align: center;
 .noBall {
 background-color: brown;
 color: white;
+}
+#enterOversContainers {
+  display: block;
+}
+#runsBtnGroup, #scoreSummary {
+  display: none;
+}
+.oversContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
 }

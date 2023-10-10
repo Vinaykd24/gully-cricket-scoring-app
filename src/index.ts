@@ -4,6 +4,15 @@ let balls = 0;
 let overs = 0;
 let remainingOvers = 0;
 let ballByBall = [];
+const enterOversDiv = document.getElementById(
+  'enterOversContainers',
+) as HTMLDivElement;
+const scoreSummaryDiv = document.getElementById(
+  'scoreSummary',
+) as HTMLDivElement;
+const runsBtnGroupDiv = document.getElementById(
+  'runsBtnGroup',
+) as HTMLDivElement;
 
 // Function to update overs and balls based on user input
 function updateOversAndBalls() {
@@ -11,6 +20,11 @@ function updateOversAndBalls() {
   if (oversInput) {
     overs = parseFloat(oversInput.value);
     balls = 0;
+    if (overs > 0) {
+      enterOversDiv.style.display = 'none';
+      runsBtnGroupDiv.style.display = 'block';
+      scoreSummaryDiv.style.display = 'block';
+    }
     updateOversDisplay();
   }
 }
@@ -24,6 +38,17 @@ function increaseScoreByRuns(runs: number) {
 
 function addExtras(extra: string) {
   score++;
+  updateScoreDisplay();
+}
+
+function endGame() {
+  score = 0;
+  balls = 0;
+  overs = 0;
+  remainingOvers = 0;
+  enterOversDiv.style.display = 'block';
+  runsBtnGroupDiv.style.display = 'none';
+  scoreSummaryDiv.style.display = 'none';
   updateScoreDisplay();
 }
 
@@ -62,6 +87,12 @@ function updateOversDisplay() {
 }
 
 document
+  .getElementById('increase-by-0')
+  ?.addEventListener('click', () => increaseScoreByRuns(0));
+document
+  .getElementById('wktBall')
+  ?.addEventListener('click', () => increaseScoreByRuns(0));
+document
   .getElementById('increase-by-1')
   ?.addEventListener('click', () => increaseScoreByRuns(1));
 document
@@ -89,6 +120,8 @@ document
 document
   .getElementById('update-overs-button')
   ?.addEventListener('click', updateOversAndBalls);
+
+document.getElementById('endGame')?.addEventListener('click', endGame);
 
 // Initial display
 updateScoreDisplay();

@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1304512178042929"
+      crossorigin="anonymous"
+    ></script>
     <meta charset="utf-8" />
-    <link rel="icon" href="./favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
       content="Web site created using create-snowpack-app"
     />
-    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <link rel="stylesheet" type="text/css" href="/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Arvo:ital@0;1&family=Martian+Mono:wght@300&display=swap"
       rel="stylesheet"
     />
-    <title>Snowpack App</title>
+    <title>Gully Cricket Scoring App</title>
   </head>
   <body>
     <h1 class="title">Cricket Scoring App</h1>
-    <p class="scoreTitle">Score</p>
-    <h2 class="scoreText"><span id="score">0</span></h2>
-    <p>Total Overs: <span id="overs">0.0</span></p>
-    <p>Remaing Overs: <span id="remainingOvers">0.0</span></p>
-    <div class="enterOversWrapper">
+    <div id="scoreSummary">
+      <p class="scoreTitle">Score</p>
+      <h2 class="scoreText">
+        <span id="score">0</span>
+      </h2>
+      <div class="oversContainer">
+        <p>Total Overs: <span id="overs">0.0</span></p>
+        <p>Remaing Overs: <span id="remainingOvers">0.0</span></p>
+      </div>
+    </div>
+    <div class="enterOversWrapper" id="enterOversContainers">
       <label for="overs-input">Enter Overs:</label>
       <input
         class="oversInput"
@@ -32,18 +43,38 @@
         min="0"
         step="0.1"
       />
-      <button id="update-overs-button">Update Overs</button>
+      <button id="update-overs-button">Start Game</button>
     </div>
-    <div class="buttonGroups">
+    <div class="buttonGroups" id="runsBtnGroup">
+      <button class="btn-big" id="increase-by-0">0</button>
       <button class="btn-big" id="increase-by-1">1</button>
       <button class="btn-big" id="increase-by-2">2</button>
       <button class="btn-big" id="increase-by-3">3</button>
       <button class="btn-big" id="increase-by-4">4</button>
-      <button class="btn-big" id="increase-by-5">5</button>
       <button class="btn-big" id="increase-by-6">6</button>
+      <button class="btn-big" id="increase-by-5">5</button>
       <button class="btn-big wide" id="wideBall">Wd</button>
       <button class="btn-big noBall" id="noBall">NB</button>
+      <button class="btn-big" id="wktBall">Wkt</button>
+      <button class="btn-big" id="endGame">End Game</button>
     </div>
-    <script type="module" src="./index.js"></script>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1304512178042929"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Gully Cricket Ad -->
+    <ins
+      class="adsbygoogle"
+      style="display: block"
+      data-ad-client="ca-pub-1304512178042929"
+      data-ad-slot="8202338973"
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    ></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    <script type="module" src="/dist/index.js"></script>
   </body>
 </html>
